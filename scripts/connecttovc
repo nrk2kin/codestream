@@ -1,0 +1,16 @@
+Set-ExecutionPolicy RemoteSigned
+
+
+#$cred = Get-Credential
+ 
+ Connect-vRAServer -Server vra.avengers.com -Tenant "pod" -IgnoreCertRequirements
+ 
+ $filter = Get-vRAResource | where {$_.ResourceType -eq "Infrastructure.Virtual"}
+ 
+    
+$date = Get-Date -Format "yyyyMMddTHHmmss"
+
+ 
+ $print =  $filter | Select Data,Owners,ResourceId,Lease
+ 
+ #$print =  $print | where {$_.Data -eq $null}
